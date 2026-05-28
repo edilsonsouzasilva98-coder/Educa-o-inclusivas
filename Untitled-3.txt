@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bio explora</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color: #fff;
+            background-color: #666;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 40px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        p {
+            color: #555;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .image-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Assuntos de Biologia</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#genetica">Genética</a></li>
+            <li><a href="#ecologia">Ecologia</a></li>
+            <li><a href="#anatomia">Anatomia</a></li>
+            <li><a href="#evolucao">Evolução</a></li>
+            <li><a href="#biologia-celular-molecular">Biologia Celular e Molecular</a></li>
+            <li><a href="#educacao-ambiental">Educação Ambiental</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="genetica">
+            <div class="image-container">
+                <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.todamateria.com.br%2Fintroducao-a-genetica%2F&psig=AOvVaw1lvfTms9Ctj1yngczSDMcX&ust=1711733817359000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCJiQ28S_l4UDFQAAAAAdAAAAABAE" alt="Genética">
+            </div>
+            <h2>Genética</h2>
+            <p>A genética estuda os genes e como eles são transmitidos de geração em geração.</p>
+        </section>
+        <section id="ecologia">
+            <div class="image-container">
+                <img src="url_da_imagem_ecologia.jpg" alt="Ecologia">
+            </div>
+            <h2>Ecologia</h2>
+            <p>A ecologia estuda as relações entre os seres vivos e o meio ambiente.</p>
+        </section>
+        <section id="anatomia">
+            <!-- Adicione imagens para anatomia conforme necessário -->
+            <h2>Anatomia</h2>
+            <p>A anatomia estuda a estrutura interna e externa dos organismos.</p>
+        </section>
+        <section id="evolucao">
+            <div class="image-container">
+                <img src="url_da_imagem_evolucao.jpg" alt="Evolução">
+            </div>
+            <h2>Evolução</h2>
+            <p>A evolução estuda como as espécies mudam ao longo do tempo.</p>
+        </section>
+        <section id="biologia-celular-molecular">
+            <!-- Adicione imagens para biologia celular e molecular conforme necessário -->
+            <h2>Biologia Celular e Molecular</h2>
+            <p>A biologia celular e molecular estuda as células e os processos moleculares que ocorrem dentro delas.</p>
+        </section>
+        <section id="educacao-ambiental">
+            <div class="image-container">
+                <img src="url_da_imagem_educacao_ambiental.jpg" alt="Educação Ambiental">
+            </div>
+            <h2>Educação Ambiental</h2>
+            <p>A educação ambiental promove a conscientização e o cuidado com o meio ambiente.</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Assuntos de Biologia</p>
+    </footer>
+</body>
+</html>

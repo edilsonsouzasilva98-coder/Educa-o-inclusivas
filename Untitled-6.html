@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Sistema Educação Inclusiva</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-[#eef4ff]">
+
+  <!-- LOGIN -->
+  <div id="loginTela"
+    class="min-h-screen bg-gradient-to-br from-[#0B0F88] to-[#10960F] flex items-center justify-center p-6">
+
+    <div class="bg-white rounded-[30px] shadow-2xl p-8 w-full max-w-md">
+
+      <!-- LOGO -->
+      <div class="flex flex-col items-center mb-6">
+
+        <img
+          src="logo.png"
+          class="w-32 mb-4"
+        >
+
+        <h1 class="text-3xl font-black text-[#0B0F88] text-center">
+          Sistema de Educação Inclusiva
+        </h1>
+
+        <p class="text-[#10960F] font-bold mt-2">
+          Prefeitura de Surubim
+        </p>
+
+      </div>
+
+      <!-- LOGIN -->
+      <div class="space-y-4">
+
+        <input
+          type="text"
+          id="usuario"
+          placeholder="Usuário"
+          class="w-full border border-gray-300 rounded-2xl p-4"
+        >
+
+        <input
+          type="password"
+          id="senha"
+          placeholder="Senha"
+          class="w-full border border-gray-300 rounded-2xl p-4"
+        >
+
+        <button
+          onclick="fazerLogin()"
+          class="w-full bg-[#10960F] hover:bg-[#0d7f0d] text-white py-4 rounded-2xl font-bold"
+        >
+          Entrar
+        </button>
+
+      </div>
+
+      <!-- CRIAR NOVO ACESSO -->
+      <div class="mt-6 border-t pt-5">
+
+        <h2 class="text-lg font-black text-[#0B0F88] text-center mb-4">
+          Criar Novo Acesso
+        </h2>
+
+        <div class="space-y-3">
+
+          <input
+            type="text"
+            id="novoUsuario"
+            placeholder="Novo usuário"
+            class="w-full border border-gray-300 rounded-2xl p-3"
+          >
+
+          <input
+            type="password"
+            id="novaSenha"
+            placeholder="Nova senha"
+            class="w-full border border-gray-300 rounded-2xl p-3"
+          >
+
+          <input
+            type="text"
+            id="nomeEscola"
+            placeholder="Nome da escola"
+            class="w-full border border-gray-300 rounded-2xl p-3"
+          >
+
+          <select
+            id="tipoUsuario"
+            class="w-full border border-gray-300 rounded-2xl p-3"
+          >
+            <option>Escola</option>
+            <option>Administrador</option>
+            <option>Coordenação</option>
+          </select>
+
+        </div>
+
+        <button
+          onclick="criarAcesso()"
+          class="w-full mt-4 bg-[#0B0F88] hover:bg-[#070a66] text-white py-3 rounded-2xl font-bold"
+        >
+          ➕ Criar Acesso
+        </button>
+
+      </div>
+
+      <!-- LOGIN PADRÃO -->
+      <div class="mt-6 bg-[#eef4ff] rounded-2xl p-4">
+
+        <p class="font-bold text-[#0B0F88]">
+          Login Administrador
+        </p>
+
+        <p>Usuário: Admin</p>
+        <p>Senha: 12345</p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- SISTEMA -->
+  <div id="sistema" class="hidden p-6">
+
+    <div class="max-w-7xl mx-auto">
+
+      <!-- HEADER -->
+      <div class="bg-white rounded-3xl shadow-xl p-6 mb-6">
+
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+
+          <div class="flex items-center gap-4">
+
+            <img
+              src="logo.png"
+              class="w-16"
+            >
+
+            <div>
+
+              <h1 class="text-4xl font-black text-[#0B0F88]">
+                Sistema de Educação Inclusiva
+              </h1>
+
+              <p class="text-[#10960F] font-bold mt-2">
+                Prefeitura de Surubim
+              </p>
+
+            </div>
+
+          </div>
+
+          <button
+            onclick="logout()"
+            class="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-2xl font-bold"
+          >
+            Sair
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- DASHBOARD -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+
+        <div class="bg-white rounded-3xl shadow-xl p-6 border-t-4 border-[#10960F]">
+
+          <h2 class="text-gray-500">
+            Escolas
+          </h2>
+
+          <p class="text-5xl font-black text-[#0B0F88] mt-3" id="totalEscolas">
+            1
+          </p>
+
+        </div>
+
+        <div class="bg-white rounded-3xl shadow-xl p-6 border-t-4 border-[#0B0F88]">
+
+          <h2 class="text-gray-500">
+            Usuários
+          </h2>
+
+          <p class="text-5xl font-black text-[#10960F] mt-3" id="totalUsuarios">
+            2
+          </p>
+
+        </div>
+
+        <div class="bg-white rounded-3xl shadow-xl p-6 border-t-4 border-[#10960F]">
+
+          <h2 class="text-gray-500">
+            Alunos
+          </h2>
+
+          <p class="text-5xl font-black text-[#0B0F88] mt-3" id="totalAlunos">
+            2
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- ESCOLAS -->
+      <div id="listaEscolas"></div>
+
+      <!-- CADASTRAR ALUNO -->
+      <div class="bg-white rounded-3xl shadow-xl p-6 mt-8">
+
+        <h2 class="text-3xl font-black text-[#0B0F88] mb-6">
+          Cadastrar Aluno
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+          <input
+            type="text"
+            id="nomeAluno"
+            placeholder="Nome do aluno"
+            class="border border-gray-300 rounded-2xl p-4"
+          >
+
+          <input
+            type="text"
+            id="cidAluno"
+            placeholder="CID"
+            class="border border-gray-300 rounded-2xl p-4"
+          >
+
+          <input
+            type="text"
+            id="professorAluno"
+            placeholder="Professor"
+            class="border border-gray-300 rounded-2xl p-4"
+          >
+
+          <select
+            id="escolaAluno"
+            class="border border-gray-300 rounded-2xl p-4">
+          </select>
+
+        </div>
+
+        <button
+          onclick="cadastrarAluno()"
+          class="mt-6 bg-[#10960F] hover:bg-[#0d7f0d] text-white px-8 py-4 rounded-2xl font-bold">
+          ➕ Cadastrar Aluno
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    // SALVA USUÁRIOS
+    let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [
+
+      {
+        usuario: "edilson.s",
+        senha: "89054515",
+        tipo: "Administrador"
+      }
+
+    ];
+
+    // SALVA ESCOLAS
+    let escolas = JSON.parse(localStorage.getItem("escolas")) || [
+
+      {
+        nome: "Escola Ana Faustina",
+        bairro: "Centro",
+
+        alunos: [
+
+          {
+            nome: "João Pedro Silva",
+            cid: "F84.0",
+            professor: "Ana Paula"
+          },
+
+          {
+            nome: "Lucas Henrique",
+            cid: "F90.0",
+            professor: "Patrícia Souza"
+          }
+
+        ]
+
+      }
+
+    ];
+
+    function salvarDados() {
+
+      localStorage.setItem(
+        "usuarios",
+        JSON.stringify(usuarios)
+      );
+
+      localStorage.setItem(
+        "escolas",
+        JSON.stringify(escolas)
+      );
+
+    }
+
+    function atualizarDashboard() {
+
+      document.getElementById("totalUsuarios").innerText =
+        usuarios.length;
+
+      document.getElementById("totalEscolas").innerText =
+        escolas.length;
+
+      let totalAlunos = 0;
+
+      escolas.forEach(escola => {
+        totalAlunos += escola.alunos.length;
+      });
+
+      document.getElementById("totalAlunos").innerText =
+        totalAlunos;
+
+    }
+
+    function atualizarSelectEscolas() {
+
+      const select =
+        document.getElementById("escolaAluno");
+
+      select.innerHTML = "";
+
+      escolas.forEach(escola => {
+
+        select.innerHTML += `
+          <option>${escola.nome}</option>
+        `;
+
+      });
+
+    }
+
+    function renderizarEscolas() {
+
+      const container =
+        document.getElementById("listaEscolas");
+
+      container.innerHTML = "";
+
+      escolas.forEach(escola => {
+
+        container.innerHTML += `
+
+        <div class="bg-white rounded-3xl shadow-xl p-6 mb-6">
+
+          <h2 class="text-3xl font-black text-[#0B0F88]">
+            ${escola.nome}
+          </h2>
+
+          <p class="text-[#10960F] font-bold mt-2">
+            Bairro: ${escola.bairro}
+          </p>
+
+          <table class="w-full mt-6">
+
+            <thead>
+
+              <tr class="bg-[#0B0F88] text-white">
+
+                <th class="p-4 text-left">Aluno</th>
+                <th class="p-4 text-left">CID</th>
+                <th class="p-4 text-left">Professor</th>
+
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              ${escola.alunos.map(aluno => `
+
+                <tr class="border-b">
+
+                  <td class="p-4">${aluno.nome}</td>
+                  <td class="p-4">${aluno.cid}</td>
+                  <td class="p-4">${aluno.professor}</td>
+
+                </tr>
+
+              `).join("")}
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+        `;
+
+      });
+
+    }
+
+    function fazerLogin() {
+
+      const usuario =
+        document.getElementById("usuario").value;
+
+      const senha =
+        document.getElementById("senha").value;
+
+      const acesso = usuarios.find(
+        u =>
+        u.usuario === usuario &&
+        u.senha === senha
+      );
+
+      if (acesso) {
+
+        document
+          .getElementById("loginTela")
+          .classList.add("hidden");
+
+        document
+          .getElementById("sistema")
+          .classList.remove("hidden");
+
+        renderizarEscolas();
+        atualizarSelectEscolas();
+        atualizarDashboard();
+
+      } else {
+
+        alert("Usuário ou senha inválidos");
+
+      }
+
+    }
+
+    function logout() {
+
+      document
+        .getElementById("loginTela")
+        .classList.remove("hidden");
+
+      document
+        .getElementById("sistema")
+        .classList.add("hidden");
+
+    }
+
+    function criarAcesso() {
+
+      const novoUsuario =
+        document.getElementById("novoUsuario").value;
+
+      const novaSenha =
+        document.getElementById("novaSenha").value;
+
+      const tipoUsuario =
+        document.getElementById("tipoUsuario").value;
+
+      const nomeEscola =
+        document.getElementById("nomeEscola").value;
+
+      if (
+        novoUsuario === "" ||
+        novaSenha === "" ||
+        nomeEscola === ""
+      ) {
+
+        alert("Preencha todos os campos");
+        return;
+
+      }
+
+      usuarios.push({
+
+        usuario: novoUsuario,
+        senha: novaSenha,
+        tipo: tipoUsuario,
+        escola: nomeEscola
+
+      });
+
+      escolas.push({
+
+        nome: nomeEscola,
+        bairro: "Não informado",
+        alunos: []
+
+      });
+
+      salvarDados();
+
+      atualizarDashboard();
+      atualizarSelectEscolas();
+      renderizarEscolas();
+
+      alert("Acesso criado com sucesso!");
+
+      document.getElementById("novoUsuario").value = "";
+      document.getElementById("novaSenha").value = "";
+      document.getElementById("nomeEscola").value = "";
+
+    }
+
+    function cadastrarAluno() {
+
+      const nome =
+        document.getElementById("nomeAluno").value;
+
+      const cid =
+        document.getElementById("cidAluno").value;
+
+      const professor =
+        document.getElementById("professorAluno").value;
+
+      const escolaSelecionada =
+        document.getElementById("escolaAluno").value;
+
+      if (
+        nome === "" ||
+        cid === "" ||
+        professor === ""
+      ) {
+
+        alert("Preencha todos os campos");
+        return;
+
+      }
+
+      const escola =
+        escolas.find(
+          e => e.nome === escolaSelecionada
+        );
+
+      escola.alunos.push({
+
+        nome,
+        cid,
+        professor
+
+      });
+
+      salvarDados();
+
+      atualizarDashboard();
+      renderizarEscolas();
+
+      alert("Aluno cadastrado!");
+
+      document.getElementById("nomeAluno").value = "";
+      document.getElementById("cidAluno").value = "";
+      document.getElementById("professorAluno").value = "";
+
+    }
+
+  </script>
+
+</body>
+
+</html>
